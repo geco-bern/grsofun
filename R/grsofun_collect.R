@@ -1,7 +1,7 @@
 
 # Reads daily output and aggregates temporally. Returning the data is optional.
 # By default, the aggregated data is written to tidy files by longitudinal bands.
-
+#' @export
 grsofun_collect <- function(
     settings,
     return_data = FALSE
@@ -86,6 +86,7 @@ grsofun_collect <- function(
 }
 
 
+#' @export
 grsofun_collect_byilon <- function(
     ilon,
     settings,

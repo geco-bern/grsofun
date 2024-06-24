@@ -1,3 +1,4 @@
+#' @export
 grsofun_tidy <- function(settings){
 
   # land mask and elevation in one
@@ -79,6 +80,7 @@ grsofun_tidy <- function(settings){
   return(settings)
 }
 
+#' @export
 grsofun_tidy_byvar <- function(var, settings){
 
   # consider data product-specific directory structure and netcdf variable and

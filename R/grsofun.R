@@ -1,3 +1,4 @@
+#' @export
 grsofun <- function(par, settings){
 
   # Convert forcing files to a tidy format

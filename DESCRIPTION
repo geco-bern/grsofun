@@ -21,12 +21,14 @@ Imports:
     multidplyr,
     parallel,
     map2tidy,
+    rsofun,
 Suggests:
     here,
     cowplot,
     rnaturalearth,
-    ggplot2
+    ggplot2,
 Remotes:
-    geco-bern/map2tidy
+    geco-bern/map2tidy,
+    geco-bern/rsofun,
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1

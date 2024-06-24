@@ -1,3 +1,4 @@
+#' @export
 grsofun_run <- function(par, settings){
 
   if (settings$nthreads == 1){
@@ -69,6 +70,7 @@ grsofun_run <- function(par, settings){
 
 }
 
+#' @export
 grsofun_run_bychunk <- function(chunk, nthreads, par, settings){
 
   # XXX: make this a system call for running a script containing this code
@@ -119,6 +121,7 @@ grsofun_run_bychunk <- function(chunk, nthreads, par, settings){
 
 }
 
+#' @export
 grsofun_run_byilon <- function(ilon, par, settings){
 
   # xxx test: ilon = 388
@@ -510,6 +513,7 @@ grsofun_run_byilon <- function(ilon, par, settings){
 
 }
 
+#' @export
 read_forcing_byvar_byilon <- function(var, ilon, settings){
 
   if (settings$source_climate == "watch-wfdei"){

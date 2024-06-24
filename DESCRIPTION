@@ -27,5 +27,7 @@ Suggests:
     cowplot,
     rnaturalearth,
     ggplot2
+Remotes:
+    geco-bern/map2tidy
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1

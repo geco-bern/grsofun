@@ -21,7 +21,6 @@ Imports:
     multidplyr,
     parallel,
     map2tidy,
-    rgeco
 Suggests:
     here,
     cowplot,

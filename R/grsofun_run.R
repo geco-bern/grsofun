@@ -35,7 +35,6 @@ grsofun_run <- function(par, settings){
                                       "magrittr",
                                       "readr",
                                       "grsofun",
-                                      "rgeco"
         )) |>
         multidplyr::cluster_assign(
           grsofun_run_byilon = grsofun_run_byilon,   # make the function known for each core
@@ -99,7 +98,6 @@ grsofun_run_bychunk <- function(chunk, nthreads, par, settings){
                                   "magrittr",
                                   "readr",
                                   "grsofun",
-                                  "rgeco"
                                   )) |>
     multidplyr::cluster_assign(
       grsofun_run_byilon = grsofun_run_byilon,   # make the function known for each core

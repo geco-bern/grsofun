@@ -1,12 +1,17 @@
+#' @param par ...
+#' @param settings ...
+#' @param vec_index Longitude indices to process
 #' @export
-grsofun_run <- function(par, settings){
+grsofun_run <- function(par, settings, vec_index = NULL){
 
   if (settings$nthreads == 1){
+    vec_index = if(is.null(vec_index)){seq(settings$grid$len_ilon)} else {vec_index}
+    message(paste0(vec_index, collapse=","))
 
     if (settings$ncores_max == 1){
       # Do not parallelize
       # out <- dplyr::tibble(ilon = 292) |>
-      out <- dplyr::tibble(ilon = seq(settings$grid$len_ilon)) |>
+      out <- dplyr::tibble(ilon = vec_index) |>
           dplyr::mutate(out = purrr::map(
           ilon,
           ~grsofun_run_byilon(
@@ -44,7 +49,7 @@ grsofun_run <- function(par, settings){
 
       # distribute computation across the cores, calculating for all longitudinal
       # indices of this chunk
-      out <- dplyr::tibble(ilon = seq(settings$grid$len_ilon)) |>
+      out <- dplyr::tibble(ilon = vec_index) |>
         multidplyr::partition(cl) |>
         dplyr::mutate(out = purrr::map(
           ilon,
@@ -58,7 +63,7 @@ grsofun_run <- function(par, settings){
     }
 
   } else {
-    # Create chunks of longitude indeces and send to separate threads
+    # Create chunks of longitude indices and send to separate threads
     # distribute to separate notes (distributed to cores within node is done
     # inside functions)
     purrr::map(

@@ -105,8 +105,9 @@ grsofun_tidy_byvar <- function(var, settings){
     outdir = settings$dir_climate_tidy,
     fileprefix = paste0(var, "_daily_WFDEI"),
     single_basedate = FALSE,
-    overwrite = settings$overwrite
+    overwrite = settings$overwrite,
     # ncores = 2  # parallel::detectCores()
+    ncores = 12  # parallel::detectCores()
   )
 
   return(error)

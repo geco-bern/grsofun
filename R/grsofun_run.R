@@ -519,7 +519,7 @@ grsofun_run_byilon <- function(ilon, par, settings){
 read_forcing_byvar_byilon <- function(var, ilon, settings){
 
   if (settings$source_climate == "watch-wfdei"){
-    df <- read_rds(paste0(settings$dir_climate, "/tidy/", var, "_daily_WFDEI_ilon_", ilon, ".rds")) |>
+    df <- read_rds(paste0(settings$dir_climate_tidy, var, "_daily_WFDEI_ilon_", ilon, ".rds")) |>
     tidyr::unnest(data)
   }
 

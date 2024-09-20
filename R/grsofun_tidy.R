@@ -23,7 +23,7 @@ grsofun_tidy <- function(settings, ...){
       outdir = settings$dir_landmask_tidy,
       fileprefix = "WFDEI-elevation",
       overwrite = settings$overwrite,
-      ncores     = settings$ncores_max,  # parallel::detectCores()
+      ncores = settings$ncores_max,  # parallel::detectCores()
       ...
     )
   } else {
@@ -41,7 +41,7 @@ grsofun_tidy <- function(settings, ...){
       outdir = settings$dir_whc_tidy,
       fileprefix = "cwdx80_forcing_halfdeg",
       overwrite = settings$overwrite,
-      ncores     = settings$ncores_max,  # parallel::detectCores()
+      ncores = settings$ncores_max,  # parallel::detectCores()
       ...
     )
   } else {
@@ -123,7 +123,7 @@ grsofun_tidy <- function(settings, ...){
           overwrite  = settings$overwrite,
           fgetdate   = ifelse(is.function(fgetdate_function), fgetdate_function, NA),
           # filter_lon_between_degrees = c(-1, 1), # TODO: only for development
-          ncores     = settings$ncores_max,  # parallel::detectCores()
+          ncores = settings$ncores_max,  # parallel::detectCores()
           ...)
         )
 
@@ -149,7 +149,7 @@ grsofun_tidy <- function(settings, ...){
           fileprefix = "MODIS-C006_MOD15A2_LAI_FPAR_zmaw",
           overwrite = TRUE,
           # filter_lon_between_degrees = c(-1,1), # TODO: only for development
-          ncores     = settings$ncores_max,  # parallel::detectCores()
+          ncores = settings$ncores_max,  # parallel::detectCores()
           ...
         )
       } else if(settings$source_fapar == "some-other-fapar-source-to-be-defined") {

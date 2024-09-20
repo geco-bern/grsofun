@@ -1,7 +1,7 @@
 Package: grsofun
 Title: Global rsofun
 Version: 0.2
-Authors@R:c(
+Authors@R: c(
     person(
       given = "Benjamin",
       family = "Stocker",
@@ -40,4 +40,4 @@ Remotes:
     geco-bern/rgeco,
     geco-bern/rsofun,
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2

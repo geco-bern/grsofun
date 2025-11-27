@@ -99,6 +99,9 @@ settings <- list(
   # dir_out_tidy_landmask = "/data/scratch/bstocker/wfdei_weedon_2014/data/tidy", # path to where tidy land mask data is to be written
   dir_out_tidy_landmask = "~/data/watch_wfdei/tidy", # path to where tidy land mask data is to be written
 
+  file_in_gicew = "~/tmp/gicew_halfdeg.cdf",
+  dir_out_tidy_gicew = "~/tmp/gicew_tidy/",
+  
   # file_in_elv      = "/data/archive/wfdei_weedon_2014/data/WFDEI-elevation.nc",        # path to where elevation data is located
   # dir_out_tidy_elv = "/data/scratch/bstocker/wfdei_weedon_2014/data/tidy" # path to where tidy elevation data is to be written
 

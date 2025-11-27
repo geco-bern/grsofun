@@ -30,6 +30,24 @@ grsofun_tidy <- function(settings, ...){
     data.frame(input_path = settings$file_in_landmask, msg = "No landmask file found.")
   }
 
+  ## Land area fraction per gridcell  ------------------------------------------
+  res_gicew <- if (!is.na(settings$file_in_gicew) && file.exists(settings$file_in_gicew)) {
+    map2tidy::map2tidy(
+      nclist = settings$file_in_gicew,
+      varnam = "GICEW",
+      lonnam = "LON",
+      latnam = "LAT",
+      do_chunks = TRUE,
+      outdir = settings$dir_out_tidy_gicew,
+      fileprefix = "gicew",
+      overwrite = settings$overwrite,
+      ncores = settings$ncores_max,  # parallel::detectCores()
+      ...
+    )
+  } else {
+    data.frame(input_path = settings$file_in_gicew, msg = "No land area fracction file found.")
+  }
+
   ## Root zone water storage capacity ----------------------------------------
   res_whc <- if (!is.na(settings$file_in_whc) && file.exists(settings$file_in_whc)) {
     map2tidy(

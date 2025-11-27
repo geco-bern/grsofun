@@ -528,12 +528,22 @@ grsofun_run_byLON <- function(LON_string, par, settings){
 
     }
 
-
     # run model
     out <- rsofun::runread_pmodel_f(
       drivers = df,
       par = par
     )
+
+    # complement with land fraction (not ice or water)
+    filnam <- paste0(settings$dir_out_tidy_gicew, "/gicew_", LON_string, ".rds")
+
+    if (!file.exists(filnam)){
+      stop(paste("File does not exist:", filnam))
+    }
+
+    df_fland <- readr::read_rds(filnam)
+
+    # merge with output data frame XXX
 
     message(paste("Writing file", filnam_output, "..."))
     readr::write_rds(out, file = filnam_output)

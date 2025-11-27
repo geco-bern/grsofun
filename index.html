@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your project • RTemplate</title>
+<title>Global rsofun • grsofun</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png">
@@ -18,13 +18,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;display=swap" rel="stylesheet">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><!-- geco --><link href="geco.css" rel="stylesheet">
-<meta property="og:title" content="Your project">
-<meta property="og:description" content="What the package does (one paragraph).">
+<meta property="og:title" content="Global rsofun">
+<meta property="og:description" content="A wrapper for global rsofun runs.">
 <meta name="twitter:card" content="summary">
 <!-- Mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" async integrity="sha256-nlrDrBTHxJJlDDX22AS33xYI1OJHnGMDhiYMSe2U0e0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/config/TeX-AMS-MML_HTMLorMML.js" async integrity="sha256-4zys9A4hMQmtq2EUL+JRoXc0NZi8jVJMzb8onewOaSQ=" crossorigin="anonymous"></script>
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -45,7 +45,7 @@
         <a class="external-link hidden-md hidden-lg" href="https://geco-group.org/">
           <img src="https://raw.githubusercontent.com/computationales/GECO_template/main/geco_logo_white_small.png" id="hexlogo" alt="GECO"></a>
         <a class="navbar-brand" href="index.html">
-           <i>RTemplate <small>v0.1</small></i>
+           <i>grsofun <small>v0.2.9000</small></i>
         </a>
       </div>
     </div>
@@ -55,7 +55,19 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
-        
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/global_rsofun_example.html">Global rsofun run</a>
+    </li>
+  </ul>
+</li>
+
       </ul>
 </div>
 <!--/.nav-collapse -->
@@ -64,148 +76,196 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="the-geco-r-project-template">The GECO R project template<a class="anchor" aria-label="anchor" href="#the-geco-r-project-template"></a>
+<div class="page-header"><h1 id="grsofun-global-rsofun-runs">grsofun: Global rsofun runs<a class="anchor" aria-label="anchor" href="#grsofun-global-rsofun-runs"></a>
 </h1></div>
-<p>This is a github template for a GECO R project repository. This template can be loaded when creating a new project in github. As such you pre-populate a project with a standard set of directories. This ensures a project-oriented and consistent workflow across all lab members, and removes some of the mental overhead in making decisions on a project structure.</p>
-<p>It must be noted that some of the functionality as provided by this setup is included in the <a href="https://usethis.r-lib.org/" class="external-link"><code>usethis</code></a> R package, the aim is slightly different. For one, <code>usethis</code> is aimed at populating a package structure. Second, there is not preset full template, hence many individual decisions still need to be made and code executed. This is bypassed by this setup.</p>
+<p><em>Author: Benjamin Stocker</em></p>
 <div class="section level2">
-<h2 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
+<h2 id="approach">Approach<a class="anchor" aria-label="anchor" href="#approach"></a>
 </h2>
-<div class="section level3">
-<h3 id="a-github-project-from-the-template">A github project from the template<a class="anchor" aria-label="anchor" href="#a-github-project-from-the-template"></a>
-</h3>
-<p>To use the template create a new repository on github, as you otherwise would using the big green button. If you are in the project on github you can hit the green button top right (Use this template).</p>
-<p><img src="https://github.com/bluegreen-labs/environmental_data_science_101/raw/main/images/green_button.png"></p>
-<p>Otherwise you can select the repository from the template dropdown menu, select <code>geco-bern/R-project-template</code>.</p>
-<p><img src="https://github.com/bluegreen-labs/environmental_data_science_101/raw/main/images/new_repo_1.png"></p>
-<p>Proceed as usual by naming your repository. However, be careful to select the correct owner of the project if you have multiple identities. <img src="https://github.com/bluegreen-labs/environmental_data_science_101/raw/main/images/new_repo_2.png"></p>
-</div>
-<div class="section level3">
-<h3 id="clone-to-your-local-computer">Clone to your local computer<a class="anchor" aria-label="anchor" href="#clone-to-your-local-computer"></a>
-</h3>
-<p>The new repository will be created and populated with the files of the template. You can then clone the project to your local computer to add files.</p>
-<p>Although optional it is wise to rename the <code>*.Proj</code> file as this will not automatically change to your repository name. However, retaining the original name should not change any of the functionality.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:USER/YOUR_PROJECT.git</span></code></pre></div>
-</div>
+<p>The {grsofun} package provides functions that wrap a call to <code>runread_pmodel_f()</code> from the {rsofun} package. This call is a point-scale simulation of the P-model. Functions of {grsofun} enable spatially distributed simulations on each gridcell and a parallelisation by gridcells for high computational speed.</p>
+<p>The implementation follows a <em>tidy</em> data paradigm. All model input and output are organised as tidy data frames where forcing and output time series are nested inside cells and each row represents one gridcell. Because <code>runread_pmodel_f()</code> requires full forcing time series sequences and because reading full time series with global coverage is commonly limited by memory, the forcing data first has to be re-organised as tidy data frames and split into separate files for each longitudinal band. After running the simulations, outputs, written as tidy data frames into separate files for each longitudinal band, have to be collected again before further processing of spatial fields.</p>
+<p>Each of these steps is implemented by a separate {grsofun} function. Functions share the <code>settings</code> argument which contains a list of all user-specified and simulation-specific information. Model parameters (which may be calibrated using {rsofun}) are provided as another separate argument.</p>
+<p>The workflow of running a global simulation of one year with WATCH-WFDEI climate forcing and MODIS FPAR is demonstrated below.</p>
 </div>
 <div class="section level2">
-<h2 id="structure">Structure<a class="anchor" aria-label="anchor" href="#structure"></a>
+<h2 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
 </h2>
-<p>The structure of the template follows the structure of an R package without actually being one. There are several reasons for this.</p>
-<ul>
-<li>Familiarizes you with an R package structure
-<ul>
-<li>allowing for an optional switch to an R package</li>
-</ul>
-</li>
-<li>Avoids top level aggregation of data, code and reporting files</li>
-<li>Splits the dynamic reporting from academic writing (<code>vignettes</code> vs. <code>manuscript</code>)</li>
-<li>Splits pre-processing of data from working / included data (<code>data-raw</code> vs. <code>data</code>)</li>
-<li>Splits R code from other scripts (bash / python in <code>src</code>)</li>
-<li>Splits R functions from R analysis scripts (<code>R</code> vs <code>analysis</code>)</li>
-</ul>
-<p>Below you find a comprehensive list of what goes where an why, as well as some best practices on how to structure further data within these folders.</p>
+<p>Load libraries for this vignette.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rnaturalearth/" class="external-link">rnaturalearth</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/" class="external-link">cowplot</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
-<h3 id="the-r-folder">The R folder<a class="anchor" aria-label="anchor" href="#the-r-folder"></a>
+<h3 id="specify-settings">Specify settings<a class="anchor" aria-label="anchor" href="#specify-settings"></a>
 </h3>
-<p>The <code>R</code> folder contains R functions, not scripts. This means code wrapped in a structure as such</p>
+<p>Note: currently, {grsofun} is set up run in demo mode with a prescribed constant CO2 and globally uniform constant cloud cover. This is to be accounted for by reading from data.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># A demo function</span></span>
-<span><span class="co">#</span></span>
-<span><span class="co"># This function demonstrates the general layout</span></span>
-<span><span class="co"># of a function</span></span>
+<code class="sourceCode R"><span><span class="va">settings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  <span class="co"># simulation config:</span></span>
+<span>  fileprefix  <span class="op">=</span> <span class="st">"test"</span>,   <span class="co"># simulation name defined by the user</span></span>
+<span>  model       <span class="op">=</span> <span class="st">"pmodel"</span>, <span class="co"># in future could also be "biomee", but not yet implemented</span></span>
+<span>  year_start  <span class="op">=</span> <span class="fl">2018</span>,     <span class="co"># xxx not yet handled</span></span>
+<span>  year_end    <span class="op">=</span> <span class="fl">2018</span>,     <span class="co"># xxx not yet handled</span></span>
+<span>  spinupyears <span class="op">=</span> <span class="fl">10</span>,       <span class="co"># model spin-up length</span></span>
+<span>  recycle     <span class="op">=</span> <span class="fl">1</span>,        <span class="co"># climate forcing recycling during the spinup</span></span>
 <span></span>
-<span><span class="va">my_function</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">parameter</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">some_actions</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<p>Functions are actions you need more than once, which can not be generated easily with external packages and are tailored to your project.</p>
-<p>These functions should stand on their own with limited links to additional custom functions. Ideally you provide a brief title and description on the function’s purpose before.</p>
-<p>Writing functions seems an initial waste of time, you could easily just copy and paste some code in your analysis scripts. However, this means that if you decide certain aspects of this workflow you might have to hunt down these changes in all analysis scripts. Failing to do so will result in corrupted analysis. In addition, writing functions will make it easy to re-use the code within the context of a new project, and if proven to be generally useful outside a single research project it can be integrated in a formal package.</p>
+<span>  <span class="co"># HPC config:</span></span>
+<span>  nnodes <span class="op">=</span> <span class="fl">1</span>,   <span class="co"># distribute to multiple nodes in a HPC environment: nnodes=1 no distribution, otherwise nnodes number of nodes to use in a HPC cluster setup to use (e.g. UBELIX) - xxx not yet implemented"</span></span>
+<span>  ncores_max <span class="op">=</span> <span class="fl">1</span>, <span class="co"># number of multiple CPU-cores used per node for shared-memory parallel programming (e.g. with models like OpenMP)"</span></span>
+<span></span>
+<span>  <span class="co"># final model output</span></span>
+<span>  dir_out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,     <span class="co"># path for tidy model output</span></span>
+<span>  dir_out_nc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,  <span class="co"># xxx not yet handled</span></span>
+<span>  save <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>            <span class="co"># a named list where names correspond to variable names</span></span>
+<span>    gpp <span class="op">=</span> <span class="st">"mon"</span>           <span class="co">#   in rsofun output and the value is a string specifying</span></span>
+<span>  <span class="op">)</span>,                      <span class="co">#   the temporal resolution to which global output is to be aggregated.</span></span>
+<span></span>
+<span>  <span class="co"># intermediate model output</span></span>
+<span>  dir_out_drivers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,  <span class="co"># If a path is provided rsofun driver object is to be saved. Uses additional disk space but substantially speeds up grsofun_run(). If dir_out_drivers is 'NA' driver object are not stored.</span></span>
+<span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,      <span class="co"># whether files with tidy forcing data and drivers are to be overwritten. If false, reads files if available instead of re-creating them.</span></span>
+<span></span>
+<span>  <span class="co">### tidy model input config:</span></span>
+<span>  grid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span> <span class="co"># a list specifying the grid which must be common to all forcing data</span></span>
+<span>    lon_start <span class="op">=</span> <span class="op">-</span><span class="fl">179.75</span>,</span>
+<span>    dlon      <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>    len_ilon  <span class="op">=</span> <span class="fl">720</span>,</span>
+<span>    lat_start <span class="op">=</span> <span class="op">-</span><span class="fl">89.75</span>,</span>
+<span>    dlat      <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>    len_ilat  <span class="op">=</span> <span class="fl">360</span></span>
+<span>  <span class="op">)</span>,</span>
+<span></span>
+<span>  source_climate <span class="op">=</span> <span class="st">"watch-wfdei"</span>,  <span class="co"># a string specifying climate forcing dataset-specific variables</span></span>
+<span>  dir_in_climate <span class="op">=</span> <span class="st">"/data/archive/wfdei_weedon_2014/data"</span>, <span class="co"># path to where climate forcing data is located</span></span>
+<span>  dir_out_tidy_climate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,  <span class="co"># path to where tidy climate forcing data is to be written</span></span>
+<span></span>
+<span>  source_fapar <span class="op">=</span> <span class="st">"modis"</span>,  <span class="co"># a string specifying fAPAR forcing dataset-specific variables</span></span>
+<span>  file_in_fapar <span class="op">=</span> <span class="st">"/data/scratch/bstocker/MODIS-C006_MOD15A2_LAI_FPAR_zmaw/MODIS-C006_MOD15A2__LAI_FPAR__LPDAAC__GLOBAL_0.5degree__UHAM-ICDC__2000_2018__MON__fv0.02.nc"</span>,  <span class="co"># path to where fAPAR forcing data is located</span></span>
+<span>  dir_out_tidy_fapar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,  <span class="co"># path to where tidy fAPAR forcing data is to be written</span></span>
+<span></span>
+<span>  file_in_whc <span class="op">=</span> <span class="st">"/data/archive/whc_stocker_2023/data/remap/cwdx80_forcing_0.5degbil.nc"</span>,</span>
+<span>  dir_out_tidy_whc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># path to where tidy root zone storage capacity forcing data is to be written</span></span>
+<span>  file_in_landmask <span class="op">=</span> <span class="st">"/data/archive/wfdei_weedon_2014/data/WFDEI-elevation.nc"</span>,  <span class="co"># path to where land mask data is located</span></span>
+<span>  dir_out_tidy_landmask <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># path to where tidy land mask data is to be written</span></span>
+<span></span>
+<span>  file_in_elv <span class="op">=</span> <span class="st">"/data/archive/wfdei_weedon_2014/data/WFDEI-elevation.nc"</span>, <span class="co"># path to where elevation data is located</span></span>
+<span>  dir_out_tidy_elv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># path to where tidy elevation data is to be written</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="the-src-folder">The src folder<a class="anchor" aria-label="anchor" href="#the-src-folder"></a>
+<h3 id="specify-model-parameters">Specify model parameters<a class="anchor" aria-label="anchor" href="#specify-model-parameters"></a>
 </h3>
-<p>The <code>src</code> folder contains scripts and code which is not R related, in packages this folder often contains Fortran or C code which needs to be compiled. Here, it is common to store bash or python functions which might assist in data cleaning or data gathering which can’t be done in R alone.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">par</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  kphio              <span class="op">=</span> <span class="fl">0.04998</span>,    <span class="co"># setup ORG in Stocker et al. 2020 GMD</span></span>
+<span>  kphio_par_a        <span class="op">=</span> <span class="fl">0.0</span>,        <span class="co"># set to zero to disable temperature-dependence of kphio</span></span>
+<span>  kphio_par_b        <span class="op">=</span> <span class="fl">1.0</span>,</span>
+<span>  soilm_thetastar    <span class="op">=</span> <span class="fl">0.6</span> <span class="op">*</span> <span class="fl">240</span>,  <span class="co"># to recover old setup with soil moisture stress</span></span>
+<span>  soilm_betao        <span class="op">=</span> <span class="fl">0.0</span>,</span>
+<span>  beta_unitcostratio <span class="op">=</span> <span class="fl">146.0</span>,</span>
+<span>  rd_to_vcmax        <span class="op">=</span> <span class="fl">0.014</span>,      <span class="co"># value from Atkin et al. 2015 for C3 herbaceous</span></span>
+<span>  tau_acclim         <span class="op">=</span> <span class="fl">30.0</span>,</span>
+<span>  kc_jmax            <span class="op">=</span> <span class="fl">0.41</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="the-data-raw-folder">The data-raw folder<a class="anchor" aria-label="anchor" href="#the-data-raw-folder"></a>
+<h3 id="make-forcing-tidy">Make forcing tidy<a class="anchor" aria-label="anchor" href="#make-forcing-tidy"></a>
 </h3>
-<p>The <code>data-raw</code> folder contains, as the name suggests, raw data and the scripts to download and pre-process the data. This is data which requires significant pre-processing to be of use in analysis. In other words, this data is not analysis ready (within the context of the project).</p>
-<p>To create full transparency in terms of the source of this raw data it is best to include (numbered) scripts to download and pre-process the data. Either in these scripts, or in a separate README, include the source of the data (reference) Ultimately, the output of the workflow in data-raw is data which is analysis ready.</p>
-<p>It is best practice to store various raw data products in their own sub-folder, with data downloading and processing scripts in the main <code>data-raw</code> folder.</p>
-<pre><code>data-raw/
-├─ raw_data_product/
-├─ 00_download_raw_data.R
-├─ 01_process_raw_data.R</code></pre>
-<p>Where possible it is good practice to store output data (in <code>data</code>) either as human readable CSV files, or as R serialized files (generated using with the <code><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS()</a></code> function).</p>
-<p>It is common that raw data is large in size, which limits the option of storing the data in a git repository. If this isn’t possible this data can be excluded from the git repository by explicitly adding directories to <code>.gitignore</code> to avoid accidentally adding them.</p>
-<p>When dealing with heterogeneous systems dynamic paths can be set to (soft) link to raw-data outside the project directory.</p>
+<p>Convert forcing data, provided as NetCDF, into a tidy format (time series data frames for each gridcell along rows) and saved for longitudinal bands in a binary format.</p>
+<p><code>{r eval=FALSE} tidy_out &lt;- grsofun_tidy(settings)</code></p>
 </div>
 <div class="section level3">
-<h3 id="the-data-folder">The data folder<a class="anchor" aria-label="anchor" href="#the-data-folder"></a>
+<h3 id="run-model">Run model<a class="anchor" aria-label="anchor" href="#run-model"></a>
 </h3>
-<p>The <code>data</code> folder contains analysis ready data. This is data which you can use, as is. This often contains the output of a <code>data-raw</code> pre-processing workflow, but can also include data which doesn’t require any intervention, e.g. a land cover map which is used as-is. Output from <code>data-raw</code> often undergoes a dramatic dimensionality reduction and will often fit github file size limits. In some cases however some data products will still be too large, it is recommended to use similar practices as describe for <code>data-raw</code> to ensure transparency on the sourcing of this data (and reproducible acquisition).</p>
-<p>It is best to store data in transparently named sub-folders according to the product type, once more including references to the source of the data where possible. Once more, download scripts can be used to ensure this transparency as well.</p>
-<pre><code>data/
-├─ data_product/
-├─ 00_download_data.R</code></pre>
+<p>Read forcing data and construct the driver object for an rsofun run. Run the model and save outputs in a tidy format in <code>.rds</code> files for each longitudinal band.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">error</span> <span class="op">&lt;-</span> <span class="fu">grsofun_run</span><span class="op">(</span><span class="va">par</span>, <span class="va">settings</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="the-analysis-folder">The analysis folder<a class="anchor" aria-label="anchor" href="#the-analysis-folder"></a>
+<h3 id="collect-outputs">Collect outputs<a class="anchor" aria-label="anchor" href="#collect-outputs"></a>
 </h3>
-<p>The <code>analysis</code> folder contains, <em>surprise</em>, R scripts covering analysis of your analysis ready data (in the <code>data</code> folder). These are R scripts with output which is limited to numbers, tables and figures. It should not include R markdown code!</p>
-<p>It is often helpful to create additional sub-folders for statistics and figures, especially if figures are large and complex (i.e. visualizations, rather than graphical representations of statistical properties, such as maps).</p>
-<p>Scripts can have a numbered prefix to indicate an order of execution, but this is generally less important as you will work on analysis ready data. If there is carry over between analysis, either merge the two files or use numbered prefixes.</p>
-<pre><code>analysis/
-├─ statistics/
-│  ├─ 00_random_forest_model.R
-│  ├─ 01_random_forest_tuning.R
-├─ figures/
-│  ├─ global_model_results_map.R
-│  ├─ complex_process_visualization.R</code></pre>
-<p>Output of the analysis routines can be written to file (<code>manuscript</code> folder) or visualized on the console or plot viewer panel.</p>
+<p>Read outputs saved in separate files for each longitudinal band. Collect data from all longitudinal bands and apply temporal aggregation steps as specified by the settings.</p>
+<p>This can either write the aggregated data again to tidy files by longitudinal band, or return the temporally aggregated data into the R environment.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/grsofun_collect.html">grsofun_collect</a></span><span class="op">(</span><span class="va">settings</span>, return_data <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="the-manuscript-folder">The manuscript folder<a class="anchor" aria-label="anchor" href="#the-manuscript-folder"></a>
-</h3>
-<p>The <code>manuscript</code> folder contains a true working document often written in an external word processing software. It also, at times, contain the output of any analysis script, such as tables and rendered figures.</p>
-<p>Thee can be an R markdown file if for example suitable templates can be found in the <a href="https://pkgs.rstudio.com/rticles/" class="external-link"><code>rticles</code></a> R package to facilitate publication. However, the use of R markdown should be done with much care (see notes on the <code>vignettes</code> folder). As before, use sub-folders to organize this work neatly.</p>
 </div>
-<div class="section level3">
-<h3 id="the-vignettes-folder">The vignettes folder<a class="anchor" aria-label="anchor" href="#the-vignettes-folder"></a>
-</h3>
-<p>The <code>vignettes</code> folder contains dynamic notebooks, i.e. R markdown files. These might serve a dual use between analysis and manuscript. However, the use case in reality should be considered very narrowly. In general, as they are commonly used, R markdown files are rarely portable. The argument that it is easy to share rendered html files is invalid if you adhere to an open workflow with github based snapshots. The latter ensures that all code is visible, all data is visible, and the project is truly reproducible. Furthermore, R markdown documents mix two cognitive tasks, writing text and writing code. Switching between these two modes comes with undue overhead. If you code, you should not be writing prose, and vise versa.</p>
-<p>Unless applied to small, educational, examples a markdown file has little place in a code heavy environment. In short, if your R markdown file contains more code than it does text, it should be considered an R script or function (with comments or documentation). Conversely, if your markdown file contains more text than code it probably is easier to collaborate on a true word processing file (or a Google Docs file). The use case where the notebooks might serve some importance is true reporting of general statistics.</p>
-<p>Finally, the use of R markdown also encourages bad project management practices. Most commonly this originates from the fact that rendering of the document is relative to the location of the document itself. If no session management tools such as the package <a href="https://here.r-lib.org/" class="external-link"><code>here</code></a> are used this automatically causes files to pile up in the top most level of a project, undoing most efforts to structure data and code. This is further compounded by the fact that there is a tendency to remain within the working environment (document), and therefore code blocks which should be functions are not translated as such.</p>
-<p>In short, R markdown files have their function in reporting results, once generated (through functions or analysis scripts) but should be avoided to develop code / ideas (see cognitive switching remark)!</p>
-</div>
-<div class="section level3">
-<h3 id="capturing-your-session-state">Capturing your session state<a class="anchor" aria-label="anchor" href="#capturing-your-session-state"></a>
-</h3>
-<p>If you want to ensure full reproducibility you will need to capture the state of the system and libraries with which you ran the original analysis. Note that you will have to execute all code and required libraries for <code>renv</code> to correctly capture all used libraries.</p>
-<p>When setting up your project you can run:</p>
+<div class="section level2">
+<h2 id="example-plot">Example plot<a class="anchor" aria-label="anchor" href="#example-plot"></a>
+</h2>
+<p>Plot a map.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Initiate a {renv} environment</span></span>
-<span><span class="fu">renv</span><span class="fu">::</span><span class="fu">init</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>To initiate your static R environment. Whenever you want to save the state of your project (and its packages) you can call:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Save the current state of the environment / project</span></span>
-<span><span class="fu">renv</span><span class="fu">::</span><span class="fu">snapshot</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>To save any changes made to your environment. All data will be saved in a project description file called a lock file (i.e. <code>renv.lock</code>). It is advised to update the state of your project regularly, and in particular before closing a project.</p>
-<p>When you move your project to a new system, or share a project on github with collaborators, you can revert to the original state of the analysis by calling:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># On a new system, or when inheriting a project</span></span>
-<span><span class="co"># from a collaborator you can use a lock file</span></span>
-<span><span class="co"># to restore the session/project state using</span></span>
-<span><span class="fu">renv</span><span class="fu">::</span><span class="fu">restore</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<blockquote>
-<p>NOTE: As mentioned in the {renv} documentation: “For development and collaboration, the <code>.Rprofile</code>, <code>renv.lock</code> and <code>renv/activate.R</code> files should be committed to your version control system. But the <code>renv/library</code> directory should normally be ignored. Note that <code>renv::init()</code> will attempt to write the requisite ignore statements to the project <code>.gitignore</code>.” We refer to @ref(learning-objectives-6) for details on github and its use.</p>
-</blockquote>
+<code class="sourceCode R"><span><span class="va">coast</span> <span class="op">&lt;-</span> <span class="fu">rnaturalearth</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_coastline.html" class="external-link">ne_coastline</a></span><span class="op">(</span></span>
+<span>  scale <span class="op">=</span> <span class="fl">110</span>,</span>
+<span>  returnclass <span class="op">=</span> <span class="st">"sf"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># January</span></span>
+<span><span class="va">gg1</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">month</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_raster</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span>, fill <span class="op">=</span> <span class="va">gpp</span><span class="op">)</span>,</span>
+<span>    show.legend <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">coast</span>,</span>
+<span>    colour <span class="op">=</span> <span class="st">'black'</span>,</span>
+<span>    linewidth <span class="op">=</span> <span class="fl">0.3</span></span>
+<span>  <span class="op">)</span>  <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span></span>
+<span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">60</span>, <span class="fl">85</span><span class="op">)</span>,</span>
+<span>    expand <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"gC m"</span><span class="op">^</span><span class="op">-</span><span class="fl">2</span>, <span class="st">"s"</span><span class="op">^</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    option <span class="op">=</span> <span class="st">"cividis"</span>,</span>
+<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15</span><span class="op">)</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
+<span>    subtitle <span class="op">=</span> <span class="st">"January monthly mean"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># July</span></span>
+<span><span class="va">gg2</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">month</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_raster</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">lon</span>, y <span class="op">=</span> <span class="va">lat</span>, fill <span class="op">=</span> <span class="va">gpp</span><span class="op">)</span>,</span>
+<span>    show.legend <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">coast</span>,</span>
+<span>    colour <span class="op">=</span> <span class="st">'black'</span>,</span>
+<span>    linewidth <span class="op">=</span> <span class="fl">0.3</span></span>
+<span>  <span class="op">)</span>  <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span></span>
+<span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">60</span>, <span class="fl">85</span><span class="op">)</span>,</span>
+<span>    expand <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"gC m"</span><span class="op">^</span><span class="op">-</span><span class="fl">2</span>, <span class="st">"s"</span><span class="op">^</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    option <span class="op">=</span> <span class="st">"cividis"</span>,</span>
+<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15</span><span class="op">)</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
+<span>    subtitle <span class="op">=</span> <span class="st">"July monthly mean"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html" class="external-link">plot_grid</a></span><span class="op">(</span></span>
+<span>  <span class="va">gg1</span>,</span>
+<span>  <span class="va">gg2</span>,</span>
+<span>  ncol <span class="op">=</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="float">
+<img src="reference/figures/gpp_demo.png" alt="Global distribution of monthly mean GPP in January (top) and July (bottom)."><div class="figcaption">Global distribution of monthly mean GPP in January (top) and July (bottom).</div>
 </div>
 </div>
 </div>
@@ -223,14 +283,15 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing RTemplate</a></li>
+<li><a href="authors.html#citation">Citing grsofun</a></li>
 </ul>
 </div>
 
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>John Doe <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0000-0000-0000" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Benjamin Stocker <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-2697-9096" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Fabian Bernhard <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-0338-0961" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
@@ -282,10 +343,10 @@
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>

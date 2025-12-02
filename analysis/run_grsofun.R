@@ -31,7 +31,7 @@ message("Starting program..")
 source_files <- list.files(here::here("R/"), pattern = "*.R$")
 purrr::walk(paste0(here::here("R/"), source_files), source)
 ncores <- max(as.integer(Sys.getenv("SLURM_CPUS_PER_TASK", 1)) - 1, 1)
-ncores <- min(ncores, 4)   # or 8, depending on memory
+ncores <- min(ncores, 8)   # or 8, depending on memory
 
 # -----------------------------------------------------------
 # Model and I/O configuration
@@ -58,7 +58,7 @@ settings <- list(
   dir_out_nc = "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_output/test_1/",
   dir_out_drivers = "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_input/test_1",
   save = list(aet = "mon"),
-  overwrite = TRUE,
+  overwrite = FALSE,
 
   ### tidy model input config:
   grid = list(
@@ -92,6 +92,7 @@ settings <- list(
   file_in_whc = "/storage/research/giub_geco/data_2/scratch/fbernhard/whc_stocker_2023/data/remap/cwdx80_forcing_0.5degbil.nc",
   file_in_landmask = "/storage/research/giub_geco/data_2/wfdei_weedon_2014/data/WFDEI-elevation.nc",
   file_in_elv = "/storage/research/giub_geco/data_2/wfdei_weedon_2014/data/WFDEI-elevation.nc",
+  file_in_gicew = "/storage/research/giub_geco/data_2/gicew/gicew_halfdeg.cdf",
 
   # Dir out
   dir_out_tidy_ssr = "/storage/research/giub_geco/data_2/ERA5Land/remap/tidy",
@@ -101,7 +102,8 @@ settings <- list(
   dir_out_tidy_fapar = "/storage/research/giub_geco/data_2/modis_lai_fpar/global/tidy",
   dir_out_tidy_whc = "/storage/research/giub_geco/data_2/mct_data/tidy",
   dir_out_tidy_landmask = "/storage/research/giub_geco/data_2/watch_wfdei/tidy",
-  dir_out_tidy_elv = "/storage/research/giub_geco/data_2/watch_wfdei/tidy"
+  dir_out_tidy_elv = "/storage/research/giub_geco/data_2/watch_wfdei/tidy",
+  dir_out_tidy_gicew = "/storage/research/giub_geco/data_2/gicew/tidy"
 )
 
 # -----------------------------------------------------------
@@ -255,10 +257,10 @@ print(settings)
 # -----------------------------------------------------------
 # Run grsofun model simulation
 # -----------------------------------------------------------
-tictoc::tic("Run model")
-error <- grsofun_run(par, settings)
-tictoc::toc()
-gc()
+# tictoc::tic("Run model")
+# error <- grsofun_run(par, settings)
+# tictoc::toc()
+# gc()
 
 # -----------------------------------------------------------
 # Collect model output data
@@ -357,4 +359,4 @@ fig_file <- file.path(fig_dir,
 
 ggsave(fig_file, width = 6, height = 5)
 message("Saved plot to: ", fig_file)
-message("All done!")
+message("All done")

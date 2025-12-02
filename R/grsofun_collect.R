@@ -124,7 +124,7 @@ grsofun_collect_byLON <- function(
         ddf |>
           dplyr::select(sitename, site_info) |>
           tidyr::unnest(site_info) |>
-          dplyr::select(sitename, lon, lat),
+          dplyr::select(sitename, lon, lat, fland),
         by = "sitename"
       )
 

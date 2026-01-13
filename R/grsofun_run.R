@@ -172,9 +172,7 @@ grsofun_run_byLON <- function(LON_string, par, settings){
       }
 
       df <- readr::read_rds(filnam) |>
-        dplyr::rename(elv = elevation) |>
-        # remove full-ocean and partial-ocean pixels
-        dplyr::filter(!is.na(elv), elv >= 0)
+        dplyr::rename(elv = elevation)
 
       # # get elevation
       # dplyr::left_join(
@@ -534,6 +532,32 @@ grsofun_run_byLON <- function(LON_string, par, settings){
       drivers = df,
       par = par
     )
+
+    # ------------------------------------------------------------------
+    # Complement with land fraction (not ice or water) from GICEW
+    # ------------------------------------------------------------------
+    filnam_gicew <- file.path(
+      settings$dir_out_tidy_gicew,
+      paste0("gicew", LON_string, ".rds")
+    )
+
+    if (!file.exists(filnam_gicew)){
+      stop("File does not exist: ", filnam_gicew)
+    }
+
+    # GICEW is the land area fraction per grid cell (0–1)
+    df_fland <- readr::read_rds(filnam_gicew) |>
+      dplyr::select(lon, lat, fland = GICEW)
+
+    # attach fland to the nested site_info for each site
+    out <- out |>
+      dplyr::mutate(
+        site_info = purrr::map(
+          site_info,
+          ~ .x |>
+            dplyr::left_join(df_fland, dplyr::join_by(lon, lat))
+        )
+      )
 
     message(paste("Writing file", filnam_output, "..."))
     readr::write_rds(out, file = filnam_output)

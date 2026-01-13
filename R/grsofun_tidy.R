@@ -112,6 +112,25 @@ grsofun_tidy <- function(settings, ...){
     data.frame(input_path = settings$dir_in_ssr, msg = "No Surface net solar radiation directory found.")
   }
 
+
+  ## Land area fraction per gridcell  ------------------------------------------
+  res_gicew <- if (!is.na(settings$file_in_gicew) && file.exists(settings$file_in_gicew)) {
+    map2tidy::map2tidy(
+      nclist = settings$file_in_gicew,
+      varnam = "GICEW",
+      lonnam     = "lon",
+      latnam     = "lat",
+      do_chunks = TRUE,
+      outdir = settings$dir_out_tidy_gicew,
+      fileprefix = "gicew",
+      overwrite = settings$overwrite,
+      ncores = settings$ncores_max,  # parallel::detectCores()
+      ...
+    )
+  } else {
+    data.frame(input_path = settings$file_in_gicew, msg = "No land area fraction file found.")
+  }
+
   ## Surface net thermal radiation ----------------------------------------------------
   res_str <- if (!is.na(settings$dir_in_str) &&
                  dir.exists(settings$dir_in_str)) {

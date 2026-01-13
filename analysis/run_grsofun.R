@@ -30,17 +30,20 @@ message("Starting program..")
 # Load all R scripts from the R/ directory
 source_files <- list.files(here::here("R/"), pattern = "*.R$")
 purrr::walk(paste0(here::here("R/"), source_files), source)
-ncores <- max(as.integer(Sys.getenv("SLURM_CPUS_PER_TASK", 1)) - 1, 1)
-ncores <- min(ncores, 4)   # or 8, depending on memory
+purrr::walk(here::here("analysis/grsofun_save_nc.R"), source)
 
+ncores <- max(as.integer(Sys.getenv("SLURM_CPUS_PER_TASK", 1)) - 1, 1)
+ncores <- min(ncores, 8) # or 4, depending on memory
+
+base_data_path <- "/storage/research/giub_geco/data_2"
+fileprefix = "test_0"   # "PM", "PM-S0" or "PT"
 # -----------------------------------------------------------
 # Model and I/O configuration
 # -----------------------------------------------------------
 
 settings <- list(
   ### simulation config:
-  fileprefix = "PM-S0",
-  ## Changed
+  fileprefix = fileprefix,
   model = "pmodel",
   year_start = 2000,
   # xxx not yet handled
@@ -53,13 +56,6 @@ settings <- list(
   nnodes = 1,
   ncores_max = ncores,
 
-  ### final model output
-  dir_out = "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_output/test_1/",
-  dir_out_nc = "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_output/test_1/",
-  dir_out_drivers = "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_input/test_1",
-  save = list(aet = "mon"),
-  overwrite = TRUE,
-
   ### tidy model input config:
   grid = list(
     lon_start = -179.75,
@@ -69,39 +65,84 @@ settings <- list(
     dlat      = 0.5,
     len_ilat  = 360
   ),
-  #################################
+
   # Simulation parameters
   params_siml = list(
     use_gs = FALSE,
     use_pml = FALSE,
     use_phydro = FALSE
   ),
-  ##################################
+
+  ### Model output
+  save = list(aet = "mon", le = "mon", gpp = "mon"),
+  overwrite = FALSE,
 
   # Source
   source_fapar = "modis",
   source_climate = "watch-wfdei",
 
-  # Dir in
-  dir_in_ssr = "/storage/research/giub_geco/data_2/ERA5Land/remap",
-  dir_in_str = "/storage/research/giub_geco/data_2/ERA5Land/remap",
-  file_in_canopy = "/storage/research/giub_geco/data_2/vegheight_lang_2023/canopy_mean_0.5deg.nc",
-  file_in_co2 = "/storage/research/giub_geco/data_2/global/co2_annmean_mlo.csv",
-  dir_in_climate = "/storage/research/giub_geco/data_2/wfdei_weedon_2014/data",
-  file_in_fapar = "/storage/research/giub_geco/data_2/modis_lai_fpar/MODIS-C061_MOD15A2H__LAI_FPAR__LPDAAC__GLOBAL_0.5degree__UHAM-ICDC__2000_2024__MON__fv0.03.nc",
-  file_in_whc = "/storage/research/giub_geco/data_2/scratch/fbernhard/whc_stocker_2023/data/remap/cwdx80_forcing_0.5degbil.nc",
-  file_in_landmask = "/storage/research/giub_geco/data_2/wfdei_weedon_2014/data/WFDEI-elevation.nc",
-  file_in_elv = "/storage/research/giub_geco/data_2/wfdei_weedon_2014/data/WFDEI-elevation.nc",
+  # Path settings
+  dir_in_ssr = file.path(base_data_path, "ERA5Land", "remap"),
+  dir_in_str = file.path(base_data_path, "ERA5Land", "remap"),
+  file_in_canopy = file.path(
+    base_data_path,
+    "vegheight_lang_2023",
+    "canopy_mean_0.5deg.nc"
+  ),
+  file_in_co2 = file.path(base_data_path, "global", "co2_annmean_mlo.csv"),
+  dir_in_climate = file.path(base_data_path, "wfdei_weedon_2014", "data"),
+  file_in_fapar = file.path(
+    base_data_path,
+    "modis_lai_fpar",
+    "MODIS-C061_MOD15A2H__LAI_FPAR__LPDAAC__GLOBAL_0.5degree__UHAM-ICDC__2000_2024__MON__fv0.03.nc"
+  ),
+  file_in_whc = file.path(
+    base_data_path,
+    "scratch",
+    "fbernhard",
+    "whc_stocker_2023",
+    "data",
+    "remap",
+    "cwdx80_forcing_0.5degbil.nc"
+  ),
+  file_in_landmask = file.path(
+    base_data_path,
+    "wfdei_weedon_2014",
+    "data",
+    "WFDEI-elevation.nc"
+  ),
+  file_in_elv = file.path(
+    base_data_path,
+    "wfdei_weedon_2014",
+    "data",
+    "WFDEI-elevation.nc"
+  ),
+  file_in_gicew = file.path(base_data_path, "gicew", "gicew_halfdeg.cdf"),
 
   # Dir out
-  dir_out_tidy_ssr = "/storage/research/giub_geco/data_2/ERA5Land/remap/tidy",
-  dir_out_tidy_str = "/storage/research/giub_geco/data_2/ERA5Land/remap/tidy",
-  dir_out_tidy_canopy = "/storage/research/giub_geco/data_2/vegheight_lang_2023/tidy",
-  dir_out_tidy_climate = "/storage/research/giub_geco/data_2/watch_wfdei/tidy",
-  dir_out_tidy_fapar = "/storage/research/giub_geco/data_2/modis_lai_fpar/global/tidy",
-  dir_out_tidy_whc = "/storage/research/giub_geco/data_2/mct_data/tidy",
-  dir_out_tidy_landmask = "/storage/research/giub_geco/data_2/watch_wfdei/tidy",
-  dir_out_tidy_elv = "/storage/research/giub_geco/data_2/watch_wfdei/tidy"
+  dir_out_tidy_ssr = file.path(base_data_path, "ERA5Land", "remap", "tidy"),
+  dir_out_tidy_str = file.path(base_data_path, "ERA5Land", "remap", "tidy"),
+  dir_out_tidy_canopy = file.path(base_data_path, "vegheight_lang_2023/tidy"),
+  dir_out_tidy_climate = file.path(base_data_path, "watch_wfdei", "tidy"),
+  dir_out_tidy_fapar = file.path(base_data_path, "modis_lai_fpar", "global", "tidy"),
+  dir_out_tidy_whc = file.path(base_data_path, "mct_data", "tidy"),
+  dir_out_tidy_landmask = file.path(base_data_path, "watch_wfdei", "tidy"),
+  dir_out_tidy_elv = file.path(base_data_path, "watch_wfdei", "tidy"),
+  dir_out_tidy_gicew = file.path(base_data_path, "gicew", "tidy"),
+
+  ### final model output
+  dir_out = file.path(
+    "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_output",
+    paste0(fileprefix, "/")
+  ),
+  dir_out_nc = file.path(
+    "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_output",
+    fileprefix
+  ),
+  dir_out_drivers = file.path(
+    "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_input",
+    fileprefix
+  )
 )
 
 # -----------------------------------------------------------
@@ -109,7 +150,8 @@ settings <- list(
 # -----------------------------------------------------------
 
 par <- list(
-  kphio              = 5.000000e-02, # chosen to be too high for demonstration
+  kphio              = 5.000000e-02,
+  # chosen to be too high for demonstration
   kphio_par_a        = -2.289344e-03,
   kphio_par_b        = 1.525094e+01,
   soilm_thetastar    = 1.577507e+02,
@@ -140,8 +182,8 @@ par_PM <- list(
   kphio_par_a        = -0.00100,
   kphio_par_b        = 24.02663,
   soilm_thetastar    = 145.72290,
-  #err_gpp            = 2.31415,
-  #err_le             = 24.76610,
+  err_gpp            = 2.31415,
+  err_le             = 24.76610,
   gw_calib           = 0.67554,
   beta_unitcostratio = 146.0,
   rd_to_vcmax        = 0.014,
@@ -154,8 +196,8 @@ par_PM_S0 <- list(
   kphio_par_a        = -0.00099,
   kphio_par_b        = 24.06332,
   soilm_thetastar    = 398.99790,
-  #err_gpp            = 2.31061,
-  #err_le             = 24.25638,
+  err_gpp            = 2.31061,
+  err_le             = 24.25638,
   gw_calib           = 0.74075,
   beta_unitcostratio = 146.0,
   rd_to_vcmax        = 0.014,
@@ -169,11 +211,10 @@ par_PM_S0 <- list(
 # -----------------------------------------------------------
 
 if (exists("settings") && is.list(settings)) {
-  # default: keep settings as declared, only override known runs
   if (settings$fileprefix == "PT") {
     # WHC: 2 m map
-    settings$file_in_whc <- "/storage/research/giub_geco/data_2/whc_2m/remap/whc_2m_0.5.nc"
-    settings$dir_out_tidy_whc = "/storage/research/giub_geco/data_2/whc_2m/remap/tidy"
+    settings$file_in_whc <- file.path(base_data_path, "whc_2m", "remap", "whc_2m_0.5.nc")
+    settings$dir_out_tidy_whc <- file.path(base_data_path, "whc_2m", "remap", "tidy")
 
     # simulation flags
     settings$params_siml <- list(use_gs = FALSE,
@@ -181,51 +222,46 @@ if (exists("settings") && is.list(settings)) {
                                  use_phydro = FALSE)
 
     # output dirs
-    settings$dir_out    <- "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_output/PT/"
-    settings$dir_out_drivers = "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_input/PT"
-    settings$dir_out_nc <- settings$dir_out
-    dir_out    <- settings$dir_out
+    dir_out <- settings$dir_out
     dir_out_nc <- settings$dir_out_nc
 
     # parameters for this run
     par <- par_PT
-
   } else if (settings$fileprefix == "PM") {
-    settings$file_in_whc <- "/storage/research/giub_geco/data_2/whc_2m/remap/whc_2m_0.5.nc"
-    settings$dir_out_tidy_whc = "/storage/research/giub_geco/data_2/whc_2m/remap/tidy"
+    settings$file_in_whc <- file.path(base_data_path, "whc_2m", "remap", "whc_2m_0.5.nc")
+    settings$dir_out_tidy_whc <- file.path(base_data_path, "whc_2m", "remap", "tidy")
 
     settings$params_siml <- list(use_gs = TRUE,
                                  use_pml = TRUE,
                                  use_phydro = FALSE)
 
-    settings$dir_out    <- "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_output/PM/"
-    settings$dir_out_drivers = "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_input/PM"
-    settings$dir_out_nc <- settings$dir_out
-    dir_out    <- settings$dir_out
+    dir_out <- settings$dir_out
     dir_out_nc <- settings$dir_out_nc
 
     par <- par_PM
-
   } else if (settings$fileprefix == "PM-S0") {
     # Stocker WHC map
-    settings$file_in_whc <- "/storage/research/giub_geco/data_2/scratch/fbernhard/whc_stocker_2023/data/remap/cwdx80_forcing_0.5degbil.nc"
-    settings$dir_out_tidy_whc = "/storage/research/giub_geco/data_2/mct_data/tidy"
+    settings$file_in_whc <- file.path(
+      base_data_path,
+      "fbernhard",
+      "whc_stocker_2023",
+      "data",
+      "remap",
+      "cwdx80_forcing_0.5degbil.nc"
+    )
+    settings$dir_out_tidy_whc <- file.path(base_data_path, "mct_data", "tidy")
     settings$params_siml <- list(use_gs = TRUE,
                                  use_pml = TRUE,
                                  use_phydro = FALSE)
 
-    settings$dir_out    <- "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_output/PM-S0/"
-    settings$dir_out_drivers = "/storage/research/giub_geco/data_2/scratch/akurth/grsofun_input/PM-S0"
-    settings$dir_out_nc <- settings$dir_out
-    dir_out    <- settings$dir_out
+    dir_out <- settings$dir_out
     dir_out_nc <- settings$dir_out_nc
 
     par <- par_PM_S0
-
   } else {
-    message("settings$fileprefix not one of PT / PM / PM-S0 — leaving defaults in place.")
+    message("settings$fileprefix not one of PT/PM/PM-S0 — leaving defaults in place.")
     # ensure plain dir_out exists for legacy code:
-    dir_out    <- settings$dir_out
+    dir_out <- settings$dir_out
     dir_out_nc <- settings$dir_out_nc
   }
 
@@ -237,8 +273,7 @@ if (exists("settings") && is.list(settings)) {
   ),
   settings$params_siml)
   settings$params_siml <- lapply(settings$params_siml, as.logical)
-
-  }
+}
 
 print(settings)
 
@@ -255,106 +290,23 @@ print(settings)
 # -----------------------------------------------------------
 # Run grsofun model simulation
 # -----------------------------------------------------------
-tictoc::tic("Run model")
-error <- grsofun_run(par, settings)
+# tictoc::tic("Run model")
+# error <- grsofun_run(par, settings)
+# tictoc::toc()
+# gc()
+
+# -----------------------------------------------------------
+# Collect model output data
+# -----------------------------------------------------------
+tictoc::tic("Collect model output")
+grsofun_collect(settings, return_data = FALSE)
 tictoc::toc()
 gc()
 
 # -----------------------------------------------------------
 # Collect model output data
 # -----------------------------------------------------------
-
-tictoc::tic("Collect model output")
-df <- grsofun_collect(settings, return_data = TRUE)
+tictoc::tic("Save model output")
+grsofun_save_nc(settings)
 tictoc::toc()
 gc()
-
-# -----------------------------------------------------------
-# Save model output data
-# -----------------------------------------------------------
-
-timestamp <- format(Sys.time(), "%Y%m%d_%H%M")
-
-# save as rds
-saveRDS(df, file = file.path(
-  settings$dir_out,
-  paste0("final_aet_df_", settings$fileprefix, "_", timestamp, ".rds")
-))
-
-# save as csv
-write.csv(df,
-          file = file.path(
-            settings$dir_out,
-            paste0("final_aet_df_", settings$fileprefix, "_", timestamp, ".csv")
-          ),
-          row.names = FALSE)
-
-
-# -----------------------------------------------------------
-# Generate example AET map plots for Jan & Jul and save
-# -----------------------------------------------------------
-
-coast <- rnaturalearth::ne_coastline(scale = 110, returnclass = "sf")
-
-# January
-gg1 <- df |>
-  filter(month == 1) |>
-  ggplot() +
-  geom_tile(aes(x = lon, y = lat, fill = aet), show.legend = TRUE) +
-  geom_sf(data = coast,
-          colour = "black",
-          linewidth = 0.3) +
-  coord_sf(ylim = c(-60, 85), expand = FALSE) +
-  scale_fill_viridis_c(name = expression(paste("gC m" ^ -2, "s" ^ -1)),
-                       option = "cividis",
-                       limits = c(0, 15)) +
-  theme_void() +
-  labs(subtitle = "January monthly mean")
-
-# July
-gg2 <- df |>
-  filter(month == 7) |>
-  ggplot() +
-  geom_tile(aes(x = lon, y = lat, fill = aet), show.legend = TRUE) +
-  geom_sf(data = coast,
-          colour = "black",
-          linewidth = 0.3) +
-  coord_sf(ylim = c(-60, 85), expand = FALSE) +
-  scale_fill_viridis_c(name = expression(paste("gC m" ^ -2, "s" ^ -1)),
-                       option = "cividis",
-                       limits = c(0, 15)) +
-  theme_void() +
-  labs(subtitle = "July monthly mean")
-
-cowplot::plot_grid(gg1, gg2, ncol = 1)
-rm(gg1, gg2, coast)
-gc()
-
-# -----------------------------------------------------------
-# Save to disk (tiny bookkeeping)
-# -----------------------------------------------------------
-
-
-# plot
-year_tag <- if (!is.null(settings$year_start)) {
-  as.character(settings$year_start)
-} else {
-  "unknown_year"
-}
-
-fig_dir <- dir_out
-dir.create(fig_dir, recursive = TRUE, showWarnings = FALSE)
-fig_file <- file.path(fig_dir,
-                      paste0(
-                       "aet_",
-                        settings$fileprefix,
-                        "_",
-                        year_tag,
-                        "_",
-                        timestamp,
-                        ".png"
-                      ))
-
-ggsave(fig_file, width = 6, height = 5)
-message("Saved plot to: ", fig_file)
-message("All done!")

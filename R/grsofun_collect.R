@@ -124,7 +124,7 @@ grsofun_collect_byLON <- function(
         ddf |>
           dplyr::select(sitename, site_info) |>
           tidyr::unnest(site_info) |>
-          dplyr::select(sitename, lon, lat),
+          dplyr::select(sitename, lon, lat), # dplyr::select(sitename, lon, lat, fland)
         by = "sitename"
       )
 
@@ -138,8 +138,7 @@ grsofun_collect_byLON <- function(
     # write to file
     outpath <- paste0(settings$dir_out, settings$fileprefix, "_mon", LON_string, ".rds")
     message(paste("Writing file", outpath, "..."))
-    readr::write_rds(file = outpath)
-    return(NULL)
+    readr::write_rds(mdf, file = outpath)
   }
 
 }
